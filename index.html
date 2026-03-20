@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  index.html — À la RACINE du projet (pas dans /public/)
+  ============================================================
+
+  Avec Vite, ce fichier DOIT être à la racine du projet.
+  Il contient le <script type="module"> qui pointe vers
+  le point d'entrée React (src/main.jsx).
+
+  Vite remplace automatiquement le <script> par le bundle
+  lors du build de production (npm run build → dist/).
+
+  Le dossier /public/ sert uniquement aux assets statiques
+  qui ne passent PAS par le bundler (favicon, robots.txt…).
+  ============================================================
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio de John Doe, développeur web full stack." />
+    <title>John Doe — Développeur web full stack</title>
+  </head>
+  <body>
+
+    <!-- Point de montage React -->
+    <div id="root"></div>
+
+    <!--
+      Script d'entrée Vite — OBLIGATOIRE à la racine du HTML.
+      type="module" : Vite utilise les modules ES6 natifs en dev.
+      Vite remplace ce tag par le bundle optimisé en production.
+    -->
+    <script type="module" src="/src/main.jsx"></script>
+
+  </body>
+</html>

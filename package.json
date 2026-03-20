@@ -1,0 +1,22 @@
+{
+  "name": "portfolio-johndoe",
+  "version": "7.0.0",
+  "description": "Portfolio React + Bootstrap 5 \u2014 Footer correctement positionn\u00e9 en bas de page.",
+  "private": true,
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0",
+    "@vitejs/plugin-react": "^4.3.1"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  }
+}

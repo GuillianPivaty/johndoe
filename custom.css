@@ -1,0 +1,397 @@
+/*
+ * ============================================================
+ * custom.css — Surcharges et styles complémentaires
+ * Portfolio John Doe v6 — React + Bootstrap 5
+ * ============================================================
+ *
+ * Ce fichier ne contient QUE ce que Bootstrap 5 ne couvre pas
+ * nativement. Tout le reste (grilles, boutons, formulaires,
+ * accordion, badges, spacing, typo) est géré par Bootstrap.
+ *
+ * Sections :
+ *   1.  Variables CSS et base
+ *   2.  Navbar personnalisée (couleur sombre)
+ *   3.  Bannière image (pages intérieures)
+ *   4.  Hero plein écran (page d'accueil)
+ *   5.  Séparateur de titre bleu
+ *   6.  Barres de compétences colorées
+ *   7.  Footer sombre
+ *   8.  Carte portfolio (image fixe)
+ *   9.  Google Maps responsive
+ *  10.  Transition de page (fade-in)
+ * ============================================================
+ */
+
+/* ============================================================
+   1. VARIABLES CSS & BASE
+   ============================================================ */
+
+:root {
+  /* Couleur principale du site */
+  --jd-blue    : #1a6fcc;
+  /* Couleur sombre de la navbar et du footer */
+  --jd-dark    : #1c1c1c;
+  --jd-darker  : #1e1e2e;
+}
+
+html { scroll-behavior: smooth; }
+
+/* ── Layout sticky footer ─────────────────────────────────────
+   html + body occupent 100% de la hauteur de la fenêtre.
+   #root est en flex colonne : <main> grandit (flex:1) pour
+   pousser le <footer> tout en bas, même sur les pages courtes
+   (Services avec 3 cartes, Mentions légales avec accordion).
+   ──────────────────────────────────────────────────────────── */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;        /* Au moins toute la hauteur viewport */
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  overflow-x: hidden;       /* Empêche le scroll horizontal sur mobile */
+}
+
+/* Le conteneur racine React doit aussi être en flex colonne */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* <main> prend tout l'espace disponible → pousse le footer en bas */
+main {
+  flex: 1 0 auto;
+}
+
+/* Le footer ne rétrécit jamais */
+footer {
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   2. NAVBAR PERSONNALISÉE
+   Bootstrap fournit la structure (.navbar, .navbar-collapse…)
+   mais pas la couleur de fond ni les styles des liens.
+   ============================================================ */
+
+/* Fond sombre de la navbar */
+.navbar-jd {
+  background-color: var(--jd-dark) !important;
+  padding-top: 0;
+  padding-bottom: 0;
+  min-height: 50px;
+  /* Sur mobile, la navbar grandit pour contenir le menu déroulant.
+     align-items: stretch permet au collapse de prendre toute la largeur. */
+  align-items: stretch;
+}
+
+/* Le container-fluid doit aussi être en colonne sur mobile
+   pour que le collapse s'affiche SOUS la barre de nav */
+@media (max-width: 991.98px) {
+  .navbar-jd > .container-fluid {
+    flex-wrap: wrap;     /* Permet au collapse de passer à la ligne */
+    padding-bottom: 0;
+  }
+}
+
+/* Marque / logo */
+.navbar-jd .navbar-brand {
+  color: #fff !important;
+  font-weight: 700;
+  font-size: .95rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.navbar-jd .navbar-brand:hover { color: #ddd !important; }
+
+/* Liens de navigation */
+.navbar-jd .nav-link {
+  color: #ccc !important;
+  font-size: .78rem;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  padding: 16px 0 14px;
+}
+
+.navbar-jd .nav-link:hover  { color: #fff !important; }
+
+/* Lien actif — souligné et gras */
+.navbar-jd .nav-link.active {
+  color: #fff !important;
+  font-weight: 700;
+  border-bottom: 2px solid #fff;
+}
+
+/* Icône hamburger Bootstrap — barres blanches */
+.navbar-jd .navbar-toggler {
+  border-color: rgba(255,255,255,.3);
+}
+
+.navbar-jd .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255%2c255%2c255%2c0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* ── Menu déroulant mobile ─────────────────────────────────────
+   CORRECTIF : le navbar-collapse Bootstrap est en position:static
+   (dans le flux normal) sur mobile, ce qui fait que le menu
+   déroulant REPOUSSE le contenu vers le bas au lieu de se
+   superposer par-dessus le hero ou la bannière.
+   ──────────────────────────────────────────────────────────── */
+
+/* Sur mobile (< 992px = breakpoint lg de Bootstrap) :
+   .navbar-collapse est dans le flux normal → repousse le hero */
+@media (max-width: 991.98px) {
+  .navbar-jd .navbar-collapse {
+    position: static;          /* Dans le flux, pas flottant       */
+    background-color: var(--jd-dark); /* Même fond que la navbar  */
+    border-top: 1px solid #2a2a2a;    /* Séparateur subtil        */
+    margin-left: -1.5rem;     /* Compense le padding du container  */
+    margin-right: -1.5rem;    /* Compense le padding du container  */
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Liens dans le menu déroulant mobile */
+.navbar-jd .navbar-collapse .nav-link {
+  padding: 12px 16px;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.navbar-jd .navbar-collapse .nav-link:last-child {
+  border-bottom: none;
+}
+
+/* ============================================================
+   3. BANNIÈRE IMAGE (pages intérieures)
+   ============================================================ */
+
+.banner {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Réduction de la bannière sur tablette */
+@media (max-width: 1024px) {
+  .banner { height: 160px; }
+}
+
+/* Réduction de la bannière sur mobile */
+@media (max-width: 600px) {
+  .banner { height: 130px; }
+}
+
+/* ============================================================
+   4. HERO PLEIN ÉCRAN (page d'accueil)
+   Bootstrap ne fournit pas de hero plein écran avec image.
+   ============================================================ */
+
+.hero-full {
+  width: 100%;
+  height: 520px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-full .hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Overlay semi-transparent pour améliorer la lisibilité */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 20, 60, 0.55);
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 0 20px;
+}
+
+/* Typographie fluide via clamp() */
+.hero-text h1 {
+  font-size: clamp(1.6rem, 5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0,0,0,.4);
+}
+
+.hero-text h2 {
+  font-size: clamp(1.1rem, 3.5vw, 2rem);
+  font-weight: 700;
+  margin-top: 10px;
+  text-shadow: 0 2px 8px rgba(0,0,0,.4);
+}
+
+/* Réduction du hero sur tablette */
+@media (max-width: 1024px) {
+  .hero-full { height: 380px; }
+}
+
+/* Réduction du hero sur mobile */
+@media (max-width: 600px) {
+  .hero-full { height: 300px; }
+}
+
+/* ============================================================
+   5. SÉPARATEUR DE TITRE BLEU
+   Utilisé sous chaque titre de page.
+   ============================================================ */
+
+.title-line {
+  width: 120px;
+  height: 3px;
+  background: var(--jd-blue);
+  margin: 16px auto 44px;
+}
+
+/* ============================================================
+   6. BARRES DE COMPÉTENCES COLORÉES
+   Bootstrap ne propose pas de barres de progression colorées
+   par technologie avec des couleurs spécifiques.
+   ============================================================ */
+
+.skill-bar-fill {
+  height: 8px;
+  border-radius: 3px;
+}
+
+/* Couleur par technologie */
+.skill-bar-fill.html5      { background: #e34; width: 90%; }
+.skill-bar-fill.css3       { background: #29b; width: 80%; }
+.skill-bar-fill.javascript { background: #f90; width: 70%; }
+.skill-bar-fill.php        { background: #4a4; width: 60%; }
+.skill-bar-fill.react      { background: #36c; width: 50%; }
+
+/* ============================================================
+   7. FOOTER SOMBRE
+   Bootstrap fournit la structure, mais pas la couleur de fond
+   ni les styles des liens du footer.
+   ============================================================ */
+
+footer.footer-jd {
+  background-color: var(--jd-darker);
+  color: #bbb;
+  padding: 48px 0 36px;
+}
+
+footer.footer-jd h5 {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+footer.footer-jd p {
+  font-size: .82rem;
+  line-height: 1.9;
+  color: #bbb;
+}
+
+footer.footer-jd ul li a {
+  color: #aaa;
+  font-size: .82rem;
+  text-decoration: none;
+}
+
+footer.footer-jd ul li a:hover { color: #fff; }
+
+/* Icônes réseaux sociaux dans le footer */
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #555;
+  color: #aaa;
+  font-size: .85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: border-color .2s, color .2s;
+  margin-right: 8px;
+}
+
+.footer-social a:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
+/* ============================================================
+   8. CARTE PORTFOLIO — image à hauteur fixe
+   Bootstrap .card gère déjà le reste (shadow, border-radius…)
+   ============================================================ */
+
+.portfolio-card-img {
+  height: 185px;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* ============================================================
+   9. GOOGLE MAPS RESPONSIVE
+   Ratio adaptatif via padding-bottom.
+   ============================================================ */
+
+.map-wrapper {
+  margin-top: 18px;
+  width: 100%;
+  position: relative;
+  padding-bottom: 75%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid #dde;
+}
+
+.map-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Carte plus courte sur mobile */
+@media (max-width: 600px) {
+  .map-wrapper { padding-bottom: 60%; }
+}
+
+/* ============================================================
+   10. TRANSITION DE PAGE (fade-in)
+   ============================================================ */
+
+.page-transition {
+  animation: pageFadeIn .25s ease forwards;
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
