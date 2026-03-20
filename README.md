@@ -3,6 +3,19 @@
 Portfolio multi-pages
 ---
 
+Le projet consiste à créer et de rendre fonctionnel le site internet d’un futur
+développeur Web, comme vous : John DOE.
+Il termine sa formation de développeur web au CEF et souhaite pouvoir se présenter sur le
+marché de l’emploi.
+Les contenus textuels qui vous sont présentés peuvent être modifiés et personnalisés selon vos
+besoins. Toutefois, la charte graphique doit être respectée.
+Des maquettes vous sont fournies, ainsi qu’un dossier avec des images libres de droits, issues
+du site de Pixabay.
+Vous pouvez remplacer certaines images par les vôtres, comme la photo de la section « à
+propos » et les maquettes de vos réalisations.
+Le site doit être travaillé pour le SEO.
+Le code doit être valide au regard des normes du W3C
+
 ## Installation et lancement
 
 ```bash
