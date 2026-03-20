@@ -1,11 +1,6 @@
-# Portfolio John Doe — React + Bootstrap 5 (v7)
+# Portfolio John Doe
 
-Portfolio multi-pages en **React 18 + JSX + Bootstrap 5**, bundlé avec **Vite**.
-
-Corrections v7 :
-- ✅ Footer correctement positionné en bas sur les pages courtes
-- ✅ Menu hamburger ne se superpose plus au hero/bannière sur mobile et tablette
-
+Portfolio multi-pages
 ---
 
 ## Installation et lancement
@@ -50,19 +45,12 @@ portfolio-johndoe/
         └── MentionsLegales.jsx
 ```
 
----
-
-## Corrections CSS appliquées
-
-### Footer toujours en bas (sticky footer)
-
 ```css
 body, #root { display: flex; flex-direction: column; min-height: 100vh; }
 main        { flex: 1 0 auto; }    /* Grandit pour remplir l'espace */
 footer      { flex-shrink: 0; }    /* Ne rétrécit jamais */
 ```
 
-### Menu hamburger ne se superpose plus au hero
 
 ```css
 @media (max-width: 991.98px) {
